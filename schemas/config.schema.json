@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-memory.dev/schemas/config.schema.json",
+  "title": "Agent Memory Config",
+  "type": "object",
+  "required": [
+    "version",
+    "project_name",
+    "store_path"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "project_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._-]+$"
+    },
+    "store_path": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
