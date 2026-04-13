@@ -5,6 +5,10 @@ edition = "2021"
 license = "MIT"
 description = "Secure local-first memory infrastructure for AI agents"
 
+[lib]
+name = "agent_hashmap"
+path = "src/lib.rs"
+
 [dependencies]
 clap = { version = "4", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }

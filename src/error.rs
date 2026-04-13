@@ -1,4 +1,3 @@
-use std::fmt;
 use std::io;
 use std::path::PathBuf;
 
@@ -24,6 +23,10 @@ pub enum AgentMemoryError {
     #[error(transparent)]
     Store(#[from] StoreError),
 
+    /// A lock operation failed.
+    #[error(transparent)]
+    Lock(#[from] LockError),
+
     /// A requested item does not exist.
     #[error(transparent)]
     NotFound(#[from] NotFoundError),
@@ -44,7 +47,7 @@ pub enum AgentMemoryError {
 
     /// An internal invariant was violated.
     ///
-    /// It is intended for situations where the crate detects 
+    /// It is intended for situations where the crate detects
     //  a state that "should never happen" if the implementation is correct.
     #[error("internal invariant violation: {message}")]
     Internal {
@@ -446,11 +449,5 @@ impl NotFoundError {
             kind,
             identifier: identifier.into(),
         }
-    }
-}
-
-impl fmt::Display for LockError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        <Self as std::error::Error>::fmt(self, f)
     }
 }

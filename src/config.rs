@@ -107,13 +107,11 @@ impl Config {
     pub fn load(path: impl AsRef<Path>) -> Result<Self> {
         let path = path.as_ref();
 
-        let raw = fs::read_to_string(path).map_err(|source| {
-            AgentMemoryError::Io {
-                source: io::Error::new(
-                    source.kind(),
-                    format!("failed to read config file {}: {source}", path.display()),
-                ),
-            }
+        let raw = fs::read_to_string(path).map_err(|source| AgentMemoryError::Io {
+            source: io::Error::new(
+                source.kind(),
+                format!("failed to read config file {}: {source}", path.display()),
+            ),
         })?;
 
         Self::from_json(&raw)
@@ -361,12 +359,10 @@ fn write_atomic(target: &Path, bytes: &[u8]) -> Result<()> {
 
 fn map_project_name_error(error: AgentMemoryError) -> AgentMemoryError {
     match error {
-        AgentMemoryError::Validation(ValidationError::Empty { .. }) => {
-            ConfigError::MissingField {
-                field: "project_name",
-            }
-            .into()
+        AgentMemoryError::Validation(ValidationError::Empty { .. }) => ConfigError::MissingField {
+            field: "project_name",
         }
+        .into(),
         AgentMemoryError::Validation(other) => ConfigError::InvalidProjectName {
             reason: validation_reason(&other),
         }
@@ -377,9 +373,10 @@ fn map_project_name_error(error: AgentMemoryError) -> AgentMemoryError {
 
 fn map_store_path_error(error: AgentMemoryError) -> AgentMemoryError {
     match error {
-        AgentMemoryError::Validation(ValidationError::Empty { .. }) => {
-            ConfigError::MissingField { field: "store_path" }.into()
+        AgentMemoryError::Validation(ValidationError::Empty { .. }) => ConfigError::MissingField {
+            field: "store_path",
         }
+        .into(),
         AgentMemoryError::Validation(other) => ConfigError::InvalidStorePath {
             reason: validation_reason(&other),
         }

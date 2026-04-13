@@ -41,6 +41,7 @@ impl Key {
     ///
     /// This is intentionally crate-visible only. External callers should always
     /// go through [`Key::new`] so invariants remain enforced at the boundary.
+    #[allow(dead_code)]
     pub(crate) fn new_unchecked(input: String) -> Self {
         Self(input)
     }
@@ -260,6 +261,7 @@ impl Value {
     }
 
     /// Constructs a value without validation.
+    #[allow(dead_code)]
     pub(crate) fn new_unchecked(input: String) -> Self {
         Self(input)
     }
@@ -352,6 +354,7 @@ impl ProjectName {
     }
 
     /// Constructs a project name without validation.
+    #[allow(dead_code)]
     pub(crate) fn new_unchecked(input: String) -> Self {
         Self(input)
     }
@@ -443,6 +446,7 @@ impl StorePath {
     }
 
     /// Constructs a store path without validation.
+    #[allow(dead_code)]
     pub(crate) fn new_unchecked(path: PathBuf) -> Self {
         Self(path)
     }
