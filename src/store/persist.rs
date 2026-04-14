@@ -4,7 +4,7 @@ use std::path::{Path, PathBuf};
 
 use serde::{Deserialize, Serialize};
 
-use crate::core::limits::MAX_CONFIG_FILE_LEN;
+use crate::core::limits::MAX_STORE_FILE_LEN;
 use crate::core::map::MemoryMap;
 use crate::error::{Result, StoreError};
 use crate::store::migration::STORE_FORMAT_VERSION;
@@ -76,11 +76,13 @@ pub fn parse_store_file(input: &str) -> Result<StoreFile> {
     Ok(parsed)
 }
 
-/// Serializes a store file as pretty JSON.
+/// Serializes a store file as compact JSON.
+///
+/// Compact encoding significantly reduces disk usage for large indexes.
 pub fn serialize_store_file(file: &StoreFile) -> Result<String> {
     validate_store_file(file)?;
 
-    serde_json::to_string_pretty(file).map_err(|error| {
+    serde_json::to_string(file).map_err(|error| {
         StoreError::Serialize {
             message: format!("failed to serialize store: {error}"),
         }
@@ -148,11 +150,11 @@ fn read_store_file(path: &Path) -> Result<String> {
         reason: "file size exceeds supported platform limits".to_owned(),
     })?;
 
-    if size > MAX_CONFIG_FILE_LEN {
+    if size > MAX_STORE_FILE_LEN {
         return Err(StoreError::Malformed {
             reason: format!(
                 "store file too large: {} bytes exceeds max {}",
-                size, MAX_CONFIG_FILE_LEN
+                size, MAX_STORE_FILE_LEN
             ),
         }
         .into());

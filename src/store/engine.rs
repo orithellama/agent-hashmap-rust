@@ -232,6 +232,10 @@ impl Store {
     ///
     /// If a lock exists, it is assumed to protect this write path.
     pub fn flush(&self) -> Result<()> {
+        if self.lock.is_none() {
+            return Err(StoreError::malformed("flush requires acquired store lock").into());
+        }
+
         self.prepare_path()?;
 
         let path = self.config.store_path().as_path();
@@ -281,7 +285,7 @@ impl Store {
     /// Consumes the store and returns the inner config.
     #[must_use]
     pub fn into_config(self) -> Config {
-        self.config.clone()
+        self.config
     }
 
     /// Returns the backing path.
