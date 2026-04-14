@@ -28,7 +28,7 @@ pub mod persist;
 /// Re-exported so callers can use:
 ///
 /// ```rust,no_run
-/// use agent_hashmap::Store;
+/// use agentmem::Store;
 /// ```
 pub use self::engine::Store;
 

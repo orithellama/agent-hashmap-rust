@@ -47,7 +47,7 @@ pub mod types;
 /// This keeps call sites ergonomic:
 ///
 /// ```rust,no_run
-/// use agent_hashmap::Result;
+/// use agentmem::Result;
 /// ```
 ///
 /// rather than forcing every consumer to spell the full error path.

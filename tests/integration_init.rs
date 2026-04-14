@@ -1,8 +1,8 @@
 use tempfile::tempdir;
 
-use agent_hashmap::config::Config;
-use agent_hashmap::store::persist;
-use agent_hashmap::types::{ProjectName, StorePath};
+use agentmem::config::Config;
+use agentmem::store::persist;
+use agentmem::types::{ProjectName, StorePath};
 
 #[test]
 fn config_for_project_root_uses_expected_default_paths() {

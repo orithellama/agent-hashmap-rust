@@ -2,10 +2,10 @@ use std::fs;
 
 use tempfile::tempdir;
 
-use agent_hashmap::config::Config;
-use agent_hashmap::index::{build_index, query_index, read_index_stats};
-use agent_hashmap::store::Store;
-use agent_hashmap::types::ProjectName;
+use agentmem::config::Config;
+use agentmem::index::{build_index, query_index, read_index_stats};
+use agentmem::store::Store;
+use agentmem::types::ProjectName;
 
 #[test]
 fn build_query_and_stats_roundtrip() {

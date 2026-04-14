@@ -23,7 +23,7 @@ pub mod prompts;
 /// Intended use in binaries:
 ///
 /// ```rust,no_run
-/// use agent_hashmap::cli::run;
+/// use agentmem::cli::run;
 /// ```
 pub use self::commands::run;
 

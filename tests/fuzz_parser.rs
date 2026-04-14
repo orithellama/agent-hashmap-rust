@@ -1,8 +1,8 @@
-use agent_hashmap::store::migration::STORE_FORMAT_VERSION;
-use agent_hashmap::store::persist::{
+use agentmem::store::migration::STORE_FORMAT_VERSION;
+use agentmem::store::persist::{
     empty_store_file, map_to_file, parse_store_file, serialize_store_file, StoreFile,
 };
-use agent_hashmap::types::Entry;
+use agentmem::types::Entry;
 
 #[test]
 fn malformed_json_is_rejected() {

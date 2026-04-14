@@ -1,8 +1,8 @@
-use agent_hashmap::config::Config;
-use agent_hashmap::store::Store;
-use agent_hashmap::types::{Key, ProjectName, Value};
+use agentmem::config::Config;
+use agentmem::store::Store;
+use agentmem::types::{Key, ProjectName, Value};
 
-fn main() -> agent_hashmap::Result<()> {
+fn main() -> agentmem::Result<()> {
     let cwd = std::env::current_dir()?;
     let config = Config::for_project_root(ProjectName::new("example-multi-agent")?, cwd)?;
 

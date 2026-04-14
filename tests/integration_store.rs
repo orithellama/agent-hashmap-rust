@@ -1,9 +1,9 @@
 use tempfile::tempdir;
 
-use agent_hashmap::config::Config;
-use agent_hashmap::store::locking;
-use agent_hashmap::store::Store;
-use agent_hashmap::types::{Key, Namespace, ProjectName, Value};
+use agentmem::config::Config;
+use agentmem::store::locking;
+use agentmem::store::Store;
+use agentmem::types::{Key, Namespace, ProjectName, Value};
 
 fn open_test_store() -> (tempfile::TempDir, Config, Store) {
     let dir = tempdir().expect("failed to create temporary directory");

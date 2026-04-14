@@ -110,14 +110,6 @@ impl MemoryMap {
         self.entries.get(key)
     }
 
-    /// Gets mutable borrowed value.
-    pub(crate) fn get_mut(
-        &mut self,
-        key: &Key,
-    ) -> Option<&mut Value> {
-        self.entries.get_mut(key)
-    }
-
     /// Requires a value or returns not-found error.
     pub fn require(
         &self,

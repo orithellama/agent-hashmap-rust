@@ -3,8 +3,8 @@ use std::process::Command;
 
 use tempfile::tempdir;
 
-use agent_hashmap::config::Config;
-use agent_hashmap::types::{Key, ProjectName, Value};
+use agentmem::config::Config;
+use agentmem::types::{Key, ProjectName, Value};
 
 fn bin() -> &'static str {
     env!("CARGO_BIN_EXE_agentmem")
