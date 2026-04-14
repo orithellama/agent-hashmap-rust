@@ -8,6 +8,6 @@
 use std::process;
 
 fn main() {
-    let code = agent_hashmap::cli::run();
+    let code = agentmem::cli::run();
     process::exit(code);
 }

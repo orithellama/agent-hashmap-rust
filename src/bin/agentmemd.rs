@@ -17,11 +17,11 @@ use std::sync::Arc;
 use std::thread;
 use std::time::Duration;
 
-use agent_hashmap::cli::output::{
+use agentmem::cli::output::{
     print_error, print_field, print_heading, print_info, print_success,
 };
-use agent_hashmap::config::{resolve_local_config_path, Config};
-use agent_hashmap::store::Store;
+use agentmem::config::{resolve_local_config_path, Config};
+use agentmem::store::Store;
 
 /// Poll interval while idle.
 ///
@@ -40,7 +40,7 @@ fn main() {
     process::exit(code);
 }
 
-fn run() -> agent_hashmap::Result<()> {
+fn run() -> agentmem::Result<()> {
     print_heading("agentmemd");
     print_info("starting local daemon");
 
