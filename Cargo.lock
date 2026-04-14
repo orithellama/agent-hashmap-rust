@@ -3,10 +3,9 @@
 version = 4
 
 [[package]]
-name = "agent-memory-rs"
+name = "agentmem"
 version = "0.1.0"
 dependencies = [
- "anyhow",
  "clap",
  "directories",
  "serde",

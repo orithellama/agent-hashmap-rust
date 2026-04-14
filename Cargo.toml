@@ -1,21 +1,41 @@
 [package]
-name = "agent-memory-rs"
+name = "agentmem"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
-description = "Secure local-first memory infrastructure for AI agents"
+description = "Local-first memory engine for AI coding agents"
+readme = "README.md"
+repository = "https://github.com/orithellama/agentmem"
+homepage = "https://github.com/orithellama/agentmem"
+documentation = "https://docs.rs/agentmem"
+keywords = ["ai", "agents", "memory", "cli", "developer-tools"]
+categories = ["command-line-utilities", "development-tools"]
+rust-version = "1.76"
 
 [lib]
-name = "agent_hashmap"
+name = "agentmem"
 path = "src/lib.rs"
 
+[[bin]]
+name = "agentmem"
+path = "src/bin/agentmem.rs"
+
+[[bin]]
+name = "agentmemd"
+path = "src/bin/agentmemd.rs"
+
 [dependencies]
-clap = { version = "4", features = ["derive"] }
+clap = { version = "4.5", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-anyhow = "1"
 thiserror = "1"
 directories = "5"
 
 [dev-dependencies]
 tempfile = "3"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
